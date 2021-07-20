@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script type="text/javascript" src="/webiopi.js"></script>
+<script type="text/javascript">
+webiopi().ready( function()
+{	// Initialize
+	onSendButtonClick();
+} );
+
+function onSendButtonClick()
+{
+	webiopi().callMacro( "GetChValue", 0, callbackGetChValue );
+	webiopi().callMacro( "GetChValue", 1, callbackGetChValue );
+}
+
+function callbackGetChValue( macro, args, data )
+{
+	if( 0 == args )
+	{
+		document.getElementById("div_ch0").innerHTML = data;
+	}
+	if( 1 == args )
+	{
+		document.getElementById("div_ch1").innerHTML = data;
+	}
+}
+</script>
+</head>
+<body>
+Ch0 :<div id="div_ch0"></div><br>
+Ch1 :<div id="div_ch1"></div><br>
+<br>
+<input type="button" value="Send" onclick="onSendButtonClick()" data-role="none">
+</body>
+</html>
